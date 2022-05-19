@@ -1,5 +1,6 @@
 import { EntitySchema } from 'typeorm';
-import { Address } from '../../../domain/entities';
+import { Address } from '../../domain/entities';
+
 export const AddressSchema = new EntitySchema<Address>({
   name: 'User',
   target: Address,
@@ -9,7 +10,7 @@ export const AddressSchema = new EntitySchema<Address>({
       primary: true,
       generated: true,
     },
-    adress: {
+    address: {
       type: String,
     },
     city: {

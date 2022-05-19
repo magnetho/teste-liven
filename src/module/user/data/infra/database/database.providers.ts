@@ -1,4 +1,3 @@
-
 import { createConnection } from 'typeorm';
 import { AddressSchema, UserSchema } from '../../schema';
 import database from './database.config';
@@ -15,11 +14,6 @@ export const databaseProviders = [
         password: database.conn_password,
         database: database.conn_database,
         entities: [UserSchema, AddressSchema],
-        migrationsTableName: 'migration',
-        migrations: ['src/migration/*.ts'],
-        cli: {
-          migrationsDir: 'src/migration',
-        },
       }),
   },
 ];
