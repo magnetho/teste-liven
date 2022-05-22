@@ -66,7 +66,7 @@ export class createTableUser1652933106944 implements MigrationInterface {
             isNullable: false,
           },
           {
-            name: 'ziCode',
+            name: 'zipCode',
             type: 'varchar',
             isNullable: false,
           },

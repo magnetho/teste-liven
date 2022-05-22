@@ -1,6 +1,13 @@
 import { User } from './user.entity';
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
-Entity('Address')
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToOne,
+  JoinColumn,
+  ManyToOne,
+} from 'typeorm';
+@Entity('Address')
 export class Address {
   @PrimaryGeneratedColumn()
   id: number;
@@ -12,5 +19,10 @@ export class Address {
   zipCode: string;
   @Column()
   country: string;
+  @Column()
+  userId: number;
+  @ManyToOne((type) => User, (user) => user.address, {
+    nullable: false,
+  })
   user: User;
 }

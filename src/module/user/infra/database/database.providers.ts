@@ -1,7 +1,9 @@
-import { User, Address } from './../../../domain/entities';
-import { createConnection } from 'typeorm';
-import database from './database.config';
 
+import path = require('path');
+import { createConnection } from 'typeorm';
+import { Address, User } from '../../domain/entities';
+import database from './database.config';
+console.log('teste', __dirname," - ", path.join(__dirname, '/../**/', '*.entity.{ts,js}'));
 export const databaseProviders = [
   {
     provide: 'DATABASE_CONNECTION',
@@ -13,8 +15,7 @@ export const databaseProviders = [
         username: database.conn_username,
         password: database.conn_password,
         database: database.conn_database,
-        entities: [User, Address],
-        synchronize:true       
+        entities: [path.join(__dirname, '../../**/', '*.entity.{ts,js}')],           
       }),
   },
 ];
