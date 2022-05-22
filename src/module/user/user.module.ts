@@ -10,9 +10,9 @@ import { ConfigModule } from '@nestjs/config';
 
 
 @Module({
-  imports: [/*TypeOrmModule.forFeature([UserSchema, AddressSchema])*/],
+  imports: [],
   controllers: [UserController],
-  providers: [UserService, UserRepository, ...databaseProviders, ...userProviders],
+  providers: [ UserRepository, UserService,  ...databaseProviders, ...userProviders],
   
 })
 export class UserModule {}

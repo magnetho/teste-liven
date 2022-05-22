@@ -1,5 +1,5 @@
+import { User, Address } from './../../../domain/entities';
 import { createConnection } from 'typeorm';
-import { AddressSchema, UserSchema } from '../../schema';
 import database from './database.config';
 
 export const databaseProviders = [
@@ -13,7 +13,8 @@ export const databaseProviders = [
         username: database.conn_username,
         password: database.conn_password,
         database: database.conn_database,
-        entities: [UserSchema, AddressSchema],
+        entities: [User, Address],
+        synchronize:true       
       }),
   },
 ];

@@ -10,6 +10,7 @@ export class UserRepository {
     private userRepository: Repository<User>,
   ) {}
   async create(user:User){
+    console.log("testes repos")
     return await this.userRepository.save(user);
   }
 }

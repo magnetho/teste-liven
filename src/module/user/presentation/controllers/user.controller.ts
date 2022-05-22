@@ -8,6 +8,7 @@ export class UserController {
 
   @Post()
   async getHello(@Body() user: User): Promise<User> {
+    console.log("request",user);
     return await this.userService.create(user);
   }
 }

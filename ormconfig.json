@@ -5,13 +5,11 @@
    "username": "postgres",
    "password": "postgres2018",
    "database": "liven",
-   "synchronize": false,
-   "logging": false,
    "entities": [
-      "src/**/*schema.ts"
+      "dist/**/*.entity.js"
    ],
    "migrations": [
-      "src/migrations/**/*.ts"
+      "dist/migrations/**/*.js"
    ],   
    "migrationsTableName": "migrations",
    "migrationsRun": true
