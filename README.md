@@ -1,10 +1,19 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
 
 ## Description
+Esse é o projeto em cumprimento ao que foi solicitado pela Liven. O projeto foi estruturado para que cada módulo tenha 3 camadas principais: 
+Infra: responsável pelo acesso aos dados<br/>
+Domain:  responsável pelas entidades e os serviços (regra de negócio)<br/>
+Presentation: responsável pela entrega das informações ao cliente<br/>
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Principais Frameworks
+
+Nestjs: Foi desenvolvido em Nestjs para maior produtividade no desenvolvimento <br/>
+Postgres Banco de dados relacional para salvar os dados <br/>
+TepyORM: Para conexão com o banco de dados e migrations da aplicação<br/>
+Swagger: Documentação da aplicação<br/>
+Potman: Para realizar os teste automatizados( foi adicionado na pasta doc o arquivo teste-liven.postman_collection.json para realizar o teste da aplicação)<br/>
+Heroku: Responsável pela hospedagem da aplicação e do banco de dados (no arquivo .env  tem a url para acesso para ao banco)<br/>
+
 
 ## Installation
 
@@ -38,16 +47,7 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
 ## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- Author - [Manoel Neto]
 
-## License
-
-Nest is [MIT licensed](LICENSE).
