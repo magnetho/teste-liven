@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "f891a722-54ab-4c8d-a7a7-b531a1dccd18",
+		"_postman_id": "e2aacbbe-f793-48af-b44f-7f09428b8c14",
 		"name": "teste-liven",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "7345544"
@@ -37,6 +37,54 @@
 					"raw": "{{LIVEN_API_HOST}}",
 					"host": [
 						"{{LIVEN_API_HOST}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"tests[\"Status code is 201\"] = responseCode.code === 201;\r",
+							"postman.setGlobalVariable(\"LIVEN_USER_ID\", jsonData);\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{LIVEN_ACCESS_TOKEN}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"TESTE\",\r\n    \"email\":\"{{LIVEN_API_EMAIL}}\",\r\n    \"password\":\"{{LIVEN_API_PASSWORD}}\"  \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{LIVEN_API_HOST}}/user",
+					"host": [
+						"{{LIVEN_API_HOST}}"
+					],
+					"path": [
+						"user"
 					]
 				}
 			},
@@ -86,54 +134,6 @@
 					"path": [
 						"user",
 						"login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "createUser",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"var jsonData = JSON.parse(responseBody);\r",
-							"tests[\"Status code is 201\"] = responseCode.code === 201;\r",
-							"postman.setGlobalVariable(\"LIVEN_USER_ID\", jsonData);\r",
-							"\r",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer {{LIVEN_ACCESS_TOKEN}}",
-						"type": "text",
-						"disabled": true
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\":\"TESTE\",\r\n    \"email\":\"{{LIVEN_API_EMAIL}}\",\r\n    \"password\":\"{{LIVEN_API_PASSWORD}}\"  \r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{LIVEN_API_HOST}}/user",
-					"host": [
-						"{{LIVEN_API_HOST}}"
-					],
-					"path": [
-						"user"
 					]
 				}
 			},
@@ -217,47 +217,6 @@
 						}
 					}
 				},
-				"url": {
-					"raw": "{{LIVEN_API_HOST}}/user/:id",
-					"host": [
-						"{{LIVEN_API_HOST}}"
-					],
-					"path": [
-						"user",
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": "{{LIVEN_USER_ID}}"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "deleteUser",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"tests[\"Status code is 200\"] = responseCode.code === 200;"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer {{LIVEN_ACCESS_TOKEN}}",
-						"type": "text"
-					}
-				],
 				"url": {
 					"raw": "{{LIVEN_API_HOST}}/user/:id",
 					"host": [
@@ -396,6 +355,54 @@
 			"response": []
 		},
 		{
+			"name": "getAddress",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{LIVEN_ACCESS_TOKEN}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{LIVEN_API_HOST}}/user/:userid/address?country=BRA",
+					"host": [
+						"{{LIVEN_API_HOST}}"
+					],
+					"path": [
+						"user",
+						":userid",
+						"address"
+					],
+					"query": [
+						{
+							"key": "country",
+							"value": "BRA"
+						}
+					],
+					"variable": [
+						{
+							"key": "userid",
+							"value": "{{LIVEN_USER_ID}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "deleteAddress",
 			"event": [
 				{
@@ -438,7 +445,7 @@
 			"response": []
 		},
 		{
-			"name": "getAddress",
+			"name": "deleteUser",
 			"event": [
 				{
 					"listen": "test",
@@ -451,7 +458,7 @@
 				}
 			],
 			"request": {
-				"method": "GET",
+				"method": "DELETE",
 				"header": [
 					{
 						"key": "Authorization",
@@ -460,24 +467,17 @@
 					}
 				],
 				"url": {
-					"raw": "{{LIVEN_API_HOST}}/user/:userid/address?country=BRA",
+					"raw": "{{LIVEN_API_HOST}}/user/:id",
 					"host": [
 						"{{LIVEN_API_HOST}}"
 					],
 					"path": [
 						"user",
-						":userid",
-						"address"
-					],
-					"query": [
-						{
-							"key": "country",
-							"value": "BRA"
-						}
+						":id"
 					],
 					"variable": [
 						{
-							"key": "userid",
+							"key": "id",
 							"value": "{{LIVEN_USER_ID}}"
 						}
 					]
