@@ -14,6 +14,11 @@ Swagger: Documentação da aplicação<br/>
 Potman: Para realizar os teste automatizados( foi adicionado na pasta doc o arquivo teste-liven.postman_collection.json para realizar o teste da aplicação)<br/>
 Heroku: Responsável pela hospedagem da aplicação e do banco de dados (no arquivo .env  tem a url para acesso para ao banco)<br/>
 
+## Project deployed
+
+```bash
+ https://liven-teste.herokuapp.com/swagger/
+ ```
 
 ## Installation
 
@@ -33,7 +38,10 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
-
+## migration
+```bash
+$ npm run typeorm:run
+```
 ## Test
 
 ```bash
