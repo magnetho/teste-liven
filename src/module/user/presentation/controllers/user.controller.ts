@@ -1,4 +1,4 @@
-import { CreateUserDTO, UpdateUserDTO, CreateAddressDTO, SearchAddressDTO } from '../dto';
+import { CreateUserDTO, UpdateUserDTO, CreateAddressDTO, SearchAddressDTO, LoginUserDTO } from '../dto';
 import {
   BadRequestException,
   Body,
@@ -36,7 +36,7 @@ export class UserController {
 
   @UseGuards(LocalAuthGuard)
   @Post('login')
-  async login(@Request() req) {
+  async login(@Request() req, @Body() user:LoginUserDTO) {
     return this.authService.login(req.user);
   }
 
