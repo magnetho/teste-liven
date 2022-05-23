@@ -1,2 +1,2 @@
-export * from './address.repository'
+export * from './teste.repository'
 export * from './user.repository'
