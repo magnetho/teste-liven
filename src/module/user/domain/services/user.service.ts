@@ -1,6 +1,5 @@
-import { AddressRepository } from '../../infra/repositories/address.repository';
+import { AddressRepository, UserRepository } from '../../infra/repositories';
 import { User } from './../entities';
-import { UserRepository } from '../../infra/repositories/user.repository';
 import { BadRequestException, Injectable } from '@nestjs/common';
 
 @Injectable()
