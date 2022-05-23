@@ -9,7 +9,14 @@ export class UserRepository {
     private userRepository: Repository<User>,
   ) {}
   async create(user: User) {
-    return await this.userRepository.save(user);
+    return (await this.userRepository.save(user)).id;
+  }
+
+  async update(user: User){
+    await this.userRepository.update(user.id, user);
+  }
+  async delete(id: number){
+    await this.userRepository.delete(id);
   }
 
   async getByEmail(email: string) {

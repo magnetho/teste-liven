@@ -1,4 +1,4 @@
-import { AddressRepository } from './../../infra/repositories/Address.repository';
+import { AddressRepository } from '../../infra/repositories/address.repository';
 import { User } from './../entities';
 import { UserRepository } from '../../infra/repositories/user.repository';
 import { BadRequestException, Injectable } from '@nestjs/common';
@@ -11,8 +11,9 @@ export class UserService {
   ) {}
 
   async create(user: User) {
-    const result = await this.userRepository.getByEmail(user.email);
-    if (!result) return await this.userRepository.create(user);
+    const userBb = await this.userRepository.getByEmail(user.email);
+    if (!userBb) return await this.userRepository.create(user);
+
     throw new BadRequestException('Email cadastrado já existe!');
   }
   async getByEmail(email: string) {
@@ -22,6 +23,15 @@ export class UserService {
   async getById(id: number) {
     const result = await this.userRepository.getById(id);
     result.address = await this.addressRepository.getByUserId(id);
+    result.password = null;
     return result;
+  }
+
+  async update(user: User) {
+    await this.userRepository.update(user);
+  }
+
+  async delete(id: number) {
+    await this.userRepository.delete(id);
   }
 }

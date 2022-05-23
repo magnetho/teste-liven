@@ -3,7 +3,7 @@ import path = require('path');
 import { createConnection } from 'typeorm';
 import { Address, User } from '../../domain/entities';
 import database from './database.config';
-console.log('teste', __dirname," - ", path.join(__dirname, '/../**/', '*.entity.{ts,js}'));
+
 export const databaseProviders = [
   {
     provide: 'DATABASE_CONNECTION',
