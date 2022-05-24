@@ -14,7 +14,7 @@
 					"script": {
 						"exec": [
 							"postman.setGlobalVariable(\"LIVEN_API_HOST\", \"https://liven-teste.herokuapp.com\");\r",
-							"postman.setGlobalVariable(\"LIVEN_API_EMAIL\", \"testes123123@liven.com\");\r",
+							"postman.setGlobalVariable(\"LIVEN_API_EMAIL\", \"teste_\"+ _.random(1, 100000)+ \"@liven.com\");\r",
 							"postman.setGlobalVariable(\"LIVEN_API_PASSWORD\", \"12345\");"
 						],
 						"type": "text/javascript"
@@ -24,7 +24,8 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+							"tests[\"Status code is 200\"] = responseCode.code === 200;\r",
+							"postman.setNextRequest(\"createUser\");"
 						],
 						"type": "text/javascript"
 					}
@@ -52,13 +53,26 @@
 							"var jsonData = JSON.parse(responseBody);\r",
 							"tests[\"Status code is 201\"] = responseCode.code === 201;\r",
 							"postman.setGlobalVariable(\"LIVEN_USER_ID\", jsonData);\r",
+							"postman.setNextRequest(\"login\")\r",
 							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
 							""
 						],
 						"type": "text/javascript"
 					}
 				}
 			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
 			"request": {
 				"method": "POST",
 				"header": [
@@ -99,7 +113,8 @@
 						"exec": [
 							"var jsonData = JSON.parse(responseBody);\r",
 							"tests[\"Status code is 201\"] = responseCode.code === 201;\r",
-							"postman.setGlobalVariable(\"LIVEN_ACCESS_TOKEN\", jsonData.access_token);"
+							"postman.setGlobalVariable(\"LIVEN_ACCESS_TOKEN\", jsonData.access_token);\r",
+							"postman.setNextRequest(\"getById\")"
 						],
 						"type": "text/javascript"
 					}
@@ -148,7 +163,8 @@
 						"exec": [
 							"var jsonData = JSON.parse(responseBody);\r",
 							"tests[\"Status code is 200\"] = responseCode.code === 200;\r",
-							"tests[\"same user \"] = jsonData.Id === pm.collectionVariables.get(\"LIVEN_USER_ID\");"
+							"tests[\"same user \"] = jsonData.Id === pm.collectionVariables.get(\"LIVEN_USER_ID\");\r",
+							"postman.setNextRequest(\"UpdateUser\")"
 						],
 						"type": "text/javascript"
 					}
@@ -193,7 +209,8 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+							"tests[\"Status code is 200\"] = responseCode.code === 200;\r",
+							"postman.setNextRequest(\"createAddress\")"
 						],
 						"type": "text/javascript"
 					}
@@ -245,7 +262,8 @@
 						"exec": [
 							"var jsonData = JSON.parse(responseBody);\r",
 							"tests[\"Status code is 201\"] = responseCode.code === 201;\r",
-							"postman.setGlobalVariable(\"LIVEN_ADDRESS_ID\", jsonData);"
+							"postman.setGlobalVariable(\"LIVEN_ADDRESS_ID\", jsonData);\r",
+							"postman.setNextRequest(\"updateAddress\")"
 						],
 						"type": "text/javascript"
 					}
@@ -305,7 +323,8 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+							"tests[\"Status code is 200\"] = responseCode.code === 200;\r",
+							"postman.setNextRequest(\"getAddress\")"
 						],
 						"type": "text/javascript"
 					}
@@ -361,7 +380,8 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+							"tests[\"Status code is 200\"] = responseCode.code === 200;\r",
+							"postman.setNextRequest(\"deleteAddress\")"
 						],
 						"type": "text/javascript"
 					}
@@ -409,7 +429,8 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+							"tests[\"Status code is 200\"] = responseCode.code === 200;\r",
+							"postman.setNextRequest(\"deleteUser\")"
 						],
 						"type": "text/javascript"
 					}
@@ -451,7 +472,8 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+							"tests[\"Status code is 200\"] = responseCode.code === 200;\r",
+							"postman.setNextRequest()"
 						],
 						"type": "text/javascript"
 					}
